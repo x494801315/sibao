@@ -1,0 +1,16 @@
+if isinstance(receivers, list):
+    if len(receivers) > 1:
+        mail.To = ';'.join(receivers)
+    else:
+        mail.To = receivers[0]
+else:
+    mail.To = receivers
+if isinstance(c_c, list):
+    if len(c_c) > 1:
+        mail.CC = ';'.join(c_c)
+    else:
+        mail.CC = c_c[0]
+else:
+    mail.CC = c_c
+
+# copied it from internet.
