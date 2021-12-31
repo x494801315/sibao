@@ -1,0 +1,30 @@
+import win32com.client as win32
+outlook = win32.Dispatch('Outlook.Application')
+mail = outlook.CreateItem(0)
+
+def sendmail(self, receivers='', c_c='',title='', body='', attach_path=''):
+  mail = outlook.CreateItem(0)
+  if isinstance(receivers, list):
+      if len(receivers) > 1:
+          mail.To = ';'.join(receivers)
+      else:
+          mail.To = receivers[0]
+  else:
+      mail.To = receivers
+  if isinstance(c_c, list):
+      if len(c_c) > 1:
+          mail.CC = ';'.join(c_c)
+      else:
+          mail.CC = c_c[0]
+  else:
+      mail.CC = c_c
+  if isinstance(attach_path, list):
+      if len(attach_path) > 1:
+          for i in attach_path:
+              mail.Attachments.add(i)
+      else:
+          mail.Attachments.add(attach_path[0])
+  else:
+      mail.Attachments.add(attach_path)
+
+# copied it from internet.thanks
